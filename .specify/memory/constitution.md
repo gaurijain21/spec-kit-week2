@@ -1,50 +1,67 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Quote of the Day Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Readable, Self-Explanatory Code
+Code MUST be written for the next reader first. Functions MUST do one thing and stay short
+(guideline: under ~30 lines). Names MUST describe intent (`pickRandomQuote`, not `doIt`).
+No dead code, commented-out code, or unused files MAY be committed. Comments explain *why*,
+never *what* the code already says.
+*Rationale*: A small project is only cheap to change if anyone can read it in minutes.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Testable Logic, Thin UI (NON-NEGOTIABLE)
+All behavior that can be expressed without the DOM (choosing quotes, toggling favorites,
+reading and writing persisted state) MUST live in plain functions that take inputs and
+return outputs, separate from DOM wiring. Every such function MUST have automated tests.
+Each functional requirement in the spec MUST map to at least one test or a written manual
+check.
+*Rationale*: Logic separated from the UI can be tested quickly and without a browser.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Tests Pass Before "Done"
+A task is complete only when the full automated test suite passes and the feature has been
+checked in a real browser. Bugs found MUST get a regression test before being fixed.
+Tests MUST NOT be weakened or deleted to make them pass.
+*Rationale*: "Done" must mean verified, not merely written.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Simplicity and Minimal Dependencies
+Use the platform first: plain HTML, CSS, and JavaScript with no frameworks, build step, or
+runtime dependencies unless the plan justifies one in its Complexity Tracking section.
+Any test tooling MUST run with a single documented command. YAGNI: build only what the
+spec requires.
+*Rationale*: Every dependency and abstraction is something future maintainers must learn.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Graceful Failure and Accessibility
+The page MUST keep working when optional capabilities fail (for example, storage that is
+unavailable or holds corrupted data): it degrades rather than crashes. Interactive controls
+MUST be real buttons, reachable and usable by keyboard, with accessible names and visible
+state.
+*Rationale*: Users should never see a broken page because of their browser settings.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Quality Gates
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- Automated tests pass with one command (documented in the README/quickstart).
+- No console errors when the page loads or when any control is used.
+- Every functional requirement in `spec.md` traces to a task in `tasks.md` and to a test or
+  manual check.
+- Code follows a consistent style: 2-space indentation, semicolons, `const`/`let` (no `var`),
+  strict equality.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Development Workflow
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Spec-driven: constitution → specify → plan → tasks → implement → converge. Each stage's
+  artifact is reviewed by a human before the next stage starts.
+- When the output is wrong because an artifact is vague or wrong, fix the spec or plan
+  first, then regenerate. Do not patch code to diverge from its spec.
+- Small, focused commits with descriptive messages, one per stage or task group.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes other practices for this project. Every plan MUST include a
+Constitution Check against Principles I–V, and any violation MUST be justified in the
+plan's Complexity Tracking table or the plan changes instead. Amendments are made with
+`/speckit-constitution`, recorded in the Sync Impact Report, and versioned with semantic
+versioning: MAJOR for removed or redefined principles, MINOR for new principles or
+sections, PATCH for wording clarifications. Compliance is reviewed at each stage gate and
+during `/speckit-converge`.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-10-18 | **Last Amended**: 2026-10-18
