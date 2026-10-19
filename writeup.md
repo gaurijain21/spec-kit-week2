@@ -12,16 +12,16 @@ Every stage was committed separately, so `git log` shows the loop in order:
 
 ```text
 bf196fe Initialize Spec Kit project with Claude integration (specify-cli v1.2.1)
-18cca59 docs: ratify constitution v1.0.0 (code quality, testing, maintainability)
-88575a8 spec: add 001-quote-of-the-day specification and quality checklist
-0421bba plan: add implementation plan, research, data model, contracts, quickstart
-c45b7b2 tasks: generate dependency-ordered tasks for 001-quote-of-the-day
-b17399f plan: fix test command (node --test tests/ fails on Node 22)        <- refinement 1
-1e738e7 implement: quote of the day page, logic module, and unit tests (T001-T014)
-14882fb implement: mark T001-T016 complete after tests and browser validation (V1-V7 pass)
-5ee15cd spec: refine FR-003 so New quote never repeats the current quote    <- refinement 2
-053f6c1 converge: append Phase 7 tasks T017-T018 for refined FR-003
-4f54756 implement: New quote excludes the current quote (T017-T018); 11/11 tests pass
+29bb05d docs: ratify constitution v1.0.0 (code quality, testing, maintainability)
+54c087a spec: add 001-quote-of-the-day specification and quality checklist
+5a2f8b3 plan: add implementation plan, research, data model, contracts, quickstart
+4ac334f tasks: generate dependency-ordered tasks for 001-quote-of-the-day
+24a333e plan: fix test command (node --test tests/ fails on Node 22)        <- refinement 1
+41f7c3d implement: quote of the day page, logic module, and unit tests (T001-T014)
+f4ddf99 implement: mark T001-T016 complete after tests and browser validation (V1-V7 pass)
+992976d spec: refine FR-003 so New quote never repeats the current quote    <- refinement 2
+6cbb9a0 converge: append Phase 7 tasks T017-T018 for refined FR-003
+950696e implement: New quote excludes the current quote (T017-T018); 11/11 tests pass
 ```
 
 ## 1. Prompts given to each skill
@@ -52,7 +52,7 @@ quote"), **4 of 60 presses picked the quote already on screen**. With 12 quotes,
 The code wasn't wrong: it did exactly what the spec said. The **spec** was vague, so the
 constitution's workflow rule applies: fix the spec, not the code.
 
-**The refinement** (commit `5ee15cd`, excerpt of the diff):
+**The refinement** (commit `992976d`, excerpt of the diff):
 
 ```diff
  - **FR-003**: The page MUST provide a "New quote" button that, when activated, replaces the
@@ -76,7 +76,7 @@ current quote is excluded before picking rather than re-rolling until the quote 
 | Tests | 9 | 11 (regression test written first and seen failing, per Constitution III) |
 | Browser: presses that repeated the quote | **4 / 60** | **0 / 60** |
 
-**A smaller refinement to the plan** (commit `b17399f`): the plan's test command,
+**A smaller refinement to the plan** (commit `24a333e`): the plan's test command,
 `node --test tests/`, fails on Node 22 with `Cannot find module '.../tests'`, because a
 directory is no longer accepted as a test path. I fixed `plan.md`, `quickstart.md`, and
 `tasks.md` to use `node --test`, and recorded the reason in research R6. I did this before
