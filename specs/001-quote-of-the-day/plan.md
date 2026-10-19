@@ -23,7 +23,7 @@ built-in test runner; `src/app.js` only wires the DOM to that logic.
 
 **Storage**: Browser `localStorage`, key `qotd.favorites`, value = JSON array of quote ids
 
-**Testing**: `node --test tests/` for logic; manual browser checks from
+**Testing**: `node --test` (auto-discovers `tests/*.test.js`; Node 22 rejects a bare directory argument) for logic; manual browser checks from
 [quickstart.md](quickstart.md) for DOM behavior
 
 **Target Platform**: Evergreen desktop and mobile browsers; works when `index.html` is
@@ -46,7 +46,7 @@ blocked or corrupted (FR-008)
 |---|---|---|
 | I. Readable code | Two small scripts with one responsibility each; descriptive function names | PASS |
 | II. Testable logic, thin UI | Selection, toggling, counting, and (de)serialization are pure functions in `src/quotes.js`; storage access goes through a `storage` argument that tests replace with a fake | PASS |
-| III. Tests pass before done | `node --test tests/` + quickstart browser checklist are the definition of done | PASS |
+| III. Tests pass before done | `node --test` + quickstart browser checklist are the definition of done | PASS |
 | IV. Simplicity | No dependencies or build step; tests use only Node built-ins | PASS |
 | V. Graceful failure & accessibility | Storage wrapped in try/catch with in-memory fallback; real `<button>`s with `aria-pressed` and an `aria-live` quote region | PASS |
 

@@ -30,7 +30,7 @@ description: "Task list for Quote of the Day"
 - [ ] T003 Create `src/quotes.js` with the dual browser/CommonJS export guard (research R1) and the frozen `QUOTES` collection of 12 quotes with stable ids (data-model.md, FR-002)
 - [ ] T004 [P] Create `tests/quotes.test.js` with a test that `QUOTES` has ≥10 entries, unique ids, and non-empty text/author
 
-**Checkpoint**: `node --test tests/` runs and passes
+**Checkpoint**: `node --test` runs and passes
 
 ---
 
@@ -79,7 +79,7 @@ description: "Task list for Quote of the Day"
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T015 [P] Run `node --test tests/` and every quickstart.md manual check (V1–V7) in a real browser; confirm no console errors
+- [ ] T015 [P] Run `node --test` and every quickstart.md manual check (V1–V7) in a real browser; confirm no console errors
 - [ ] T016 [P] Review code against constitution Principles I–V and Quality Gates (style, no dead code, accessible names)
 
 ---

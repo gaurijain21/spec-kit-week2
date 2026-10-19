@@ -13,7 +13,7 @@ e.g. `python -m http.server 8000`).
 ## Automated tests
 
 ```bash
-node --test tests/
+node --test
 ```
 
 Expected: all tests pass, 0 failures.
