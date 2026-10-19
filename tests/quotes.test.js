@@ -51,6 +51,20 @@ test("pickRandomQuote always returns a quote from the collection", () => {
   }
 });
 
+test("pickRandomQuote never returns the excluded quote", () => {
+  const excluded = QUOTES[0].id;
+  for (let i = 0; i < 200; i += 1) {
+    assert.notEqual(pickRandomQuote(QUOTES, Math.random, excluded).id, excluded);
+  }
+  // random() = 0 would pick QUOTES[0] if exclusion were missing.
+  assert.equal(pickRandomQuote(QUOTES, () => 0, excluded), QUOTES[1]);
+});
+
+test("pickRandomQuote returns the only quote when nothing else is available", () => {
+  const single = [QUOTES[0]];
+  assert.equal(pickRandomQuote(single, Math.random, QUOTES[0].id), QUOTES[0]);
+});
+
 test("isFavorite reports membership", () => {
   assert.equal(isFavorite(["a"], "a"), true);
   assert.equal(isFavorite(["a"], "b"), false);

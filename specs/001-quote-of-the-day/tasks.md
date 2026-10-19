@@ -105,5 +105,5 @@ MVP = Phases 1–3 (a page that shows a random quote). Then add US2 and US3 incr
 
 ## Phase 7: Convergence
 
-- [ ] T017 Add regression tests in tests/quotes.test.js that pickRandomQuote never returns the excluded quote and still returns the only quote of a 1-item collection per FR-003 (partial)
-- [ ] T018 Exclude the current quote in pickRandomQuote (src/quotes.js) and pass the current id from onNewQuote (src/app.js) per FR-003, US2/AC1 (partial)
+- [X] T017 Add regression tests in tests/quotes.test.js that pickRandomQuote never returns the excluded quote and still returns the only quote of a 1-item collection per FR-003 (partial)
+- [X] T018 Exclude the current quote in pickRandomQuote (src/quotes.js) and pass the current id from onNewQuote (src/app.js) per FR-003, US2/AC1 (partial)

@@ -27,8 +27,10 @@
     { id: "rumi-1", text: "What you seek is seeking you.", author: "Rumi" },
   ].map(Object.freeze));
 
-  function pickRandomQuote(quotes, random = Math.random) {
-    return quotes[Math.floor(random() * quotes.length)];
+  function pickRandomQuote(quotes, random = Math.random, excludeId = null) {
+    const candidates = quotes.filter((quote) => quote.id !== excludeId);
+    if (candidates.length === 0) return quotes[0];
+    return candidates[Math.floor(random() * candidates.length)];
   }
 
   function isFavorite(favorites, id) {

@@ -45,7 +45,7 @@
   }
 
   function onNewQuote() {
-    showQuote(logic.pickRandomQuote(logic.QUOTES));
+    showQuote(logic.pickRandomQuote(logic.QUOTES, Math.random, state.current.id));
   }
 
   function onToggleFavorite() {
