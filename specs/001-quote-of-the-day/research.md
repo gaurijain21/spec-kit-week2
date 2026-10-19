@@ -48,3 +48,14 @@
   `Cannot find module '.../tests'`, because a directory is no longer accepted as a test path.
 - **Alternatives considered**: `node --test tests/*.test.js` (depends on the shell expanding
   globs, which differs between bash and PowerShell).
+
+## R7. "New quote" must change the quote (amended after first converge)
+
+- **Decision**: `pickRandomQuote` takes an `excludeId` and picks only among the other
+  quotes; `app.js` passes the current quote's id when "New quote" is pressed (not on page
+  load).
+- **Rationale**: Spec FR-003 was refined after browser testing showed 4 of 60 presses
+  re-selected the current quote. Excluding before picking (rather than re-rolling in a loop)
+  keeps the choice uniform and the function deterministic under a stubbed `random`.
+- **Alternatives considered**: Re-roll until different (unbounded loop in theory); shuffle
+  bag with no repeats until all are shown (more state than the spec asks for).

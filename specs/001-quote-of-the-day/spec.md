@@ -44,7 +44,8 @@ from the collection.
 **Acceptance Scenarios**:
 
 1. **Given** a quote is displayed, **When** the visitor presses "New quote", **Then** a
-   randomly selected quote from the collection is displayed in its place.
+   randomly selected quote that is **different from the one currently shown** is displayed
+   in its place, so every press visibly changes the quote.
 2. **Given** the visitor uses only the keyboard, **When** they move focus to "New quote" and
    press Enter or Space, **Then** the same thing happens as with a click.
 
@@ -83,6 +84,9 @@ a favorite.
   simply are not kept after reload, and nothing breaks.
 - Stored favorites data is corrupted or refers to quotes that no longer exist in the
   collection: invalid entries are ignored and the page loads normally.
+- Pressing "New quote" must never leave the same quote on screen (observed during
+  implementation: with 12 quotes, about 1 in 12 presses re-picked the current quote, so the
+  button appeared to do nothing).
 - The visitor toggles favorite very rapidly: the final visible state matches the stored
   state.
 
@@ -95,7 +99,8 @@ a favorite.
 - **FR-002**: The built-in collection MUST contain at least 10 quotes, each with text and an
   author, and MUST be available without any network request.
 - **FR-003**: The page MUST provide a "New quote" button that, when activated, replaces the
-  displayed quote with a randomly selected quote from the collection.
+  displayed quote with a randomly selected quote from the collection **other than the one
+  currently displayed** (if the collection has only one quote, that quote stays).
 - **FR-004**: The page MUST provide a favorite control for the displayed quote that toggles
   it between favorite and not favorite, and MUST show the current state visibly and to
   assistive technology.
@@ -127,7 +132,8 @@ a favorite.
 
 - Single visitor, single browser; no accounts, syncing, or sharing of favorites.
 - The quote collection is fixed and ships with the page; editing quotes is out of scope.
-- Selection is random over the whole collection.
+- Selection is random over the collection, excluding the quote currently on screen when
+  "New quote" is pressed. Quotes may repeat across non-consecutive presses.
 - A dedicated list or page of all favorites is out of scope for this version; the count
   and the per-quote state satisfy "a way to mark a quote as a favorite".
 - Desktop and mobile browsers from the last two years are supported.

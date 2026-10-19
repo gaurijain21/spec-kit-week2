@@ -6,7 +6,7 @@ except `loadFavorites` / `saveFavorites`, which only touch the `storage` object 
 | Function | Signature | Behavior |
 |---|---|---|
 | `QUOTES` | `Quote[]` | The built-in collection (frozen) |
-| `pickRandomQuote` | `(quotes, random = Math.random) → Quote` | Returns `quotes[Math.floor(random() * quotes.length)]` |
+| `pickRandomQuote` | `(quotes, random = Math.random, excludeId = null) → Quote` | Picks uniformly among quotes whose `id !== excludeId`; if that leaves none (1-quote collection), returns `quotes[0]` |
 | `isFavorite` | `(favorites, id) → boolean` | Whether `id` is in `favorites` |
 | `toggleFavorite` | `(favorites, id) → string[]` | Returns a **new** array with `id` added or removed |
 | `parseFavorites` | `(raw, quotes) → string[]` | Validates stored JSON per data-model rules; never throws |
