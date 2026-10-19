@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quote of the Day</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Quote of the Day</h1>
+      <div aria-live="polite">
+        <blockquote>
+          <p id="quote-text"></p>
+          <cite id="quote-author"></cite>
+        </blockquote>
+      </div>
+      <div class="controls">
+        <button id="new-quote" type="button">New quote</button>
+        <button id="favorite" type="button" aria-pressed="false">
+          <span class="icon" aria-hidden="true">☆</span>
+          <span class="label">Add to favorites</span>
+        </button>
+        <span id="favorite-count">Favorites: 0</span>
+      </div>
+      <p id="storage-note" hidden>Favorites can't be saved in this browser.</p>
+    </main>
+    <script src="src/quotes.js"></script>
+    <script src="src/app.js"></script>
+  </body>
+</html>
